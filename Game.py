@@ -3,6 +3,7 @@
 
 import turtle
 import time
+import random
 
 delay = 0.1
 
@@ -25,6 +26,16 @@ head.color("black")
 head.penup() #so that it will not draw anything when the turtule is moving
 head.goto(0,0) #when the head start we want it to be in the center of the screen so yaxe and xaxe are 0
 head.direction = "stop"
+
+#Snake food
+
+food = turtle.Turtle()
+food.speed(0)
+food.shape("circle")
+food.color("yellow")
+food.penup() #so that it will not draw anything when the turtule is moving
+food.goto(0,100) #the initial postion of the food
+
 
 
 # My Functions
@@ -75,5 +86,12 @@ while True:
 
     time.sleep(delay)
 
+    if head.distance(food) < 20: #distance evaluate itself the distance between the two object
+        # Let's move the food to a random spot on the screen
+        x = random.randint(-290,290)
+        y = random.randint(-290,290)  #we could have done 300 (half of the screen but as we want to keep the food visible -10)
+        food.goto(x, y)
+        # this food goto defines the position after to have met the condition of < 20 (the initial position is define in the first food.goto)
+        # and randomise by randint
 
 window.mainloop()
